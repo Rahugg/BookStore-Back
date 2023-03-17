@@ -1,6 +1,7 @@
 package database
 
 import (
+	"Assignment3Go/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -14,4 +15,6 @@ func Connect() {
 	}
 
 	DB = connection
+
+	connection.AutoMigrate(&models.Book{})
 }
