@@ -2,14 +2,26 @@ package database
 
 import (
 	"Assignment3Go/models"
+	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
-func Connect() {
-	connection, err := gorm.Open(postgres.Open("postgres://postgres:12345@localhost:5432/assignment3go"), &gorm.Config{})
+type Config struct {
+	Host     string
+	Port     string
+	Username string
+	Password string
+	DBName   string
+	SSLMode  string
+}
+
+func Connect(cfg Config) {
+	dsn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
+		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
+	connection, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Could not connect to the db")
 	}
