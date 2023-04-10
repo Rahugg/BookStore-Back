@@ -25,6 +25,10 @@ Change into the project directory:
 Start the application with Docker Compose:
 
     docker-compose up
+    
+Start the application without Docker:
+
+    go run main.go
 
 The application will be available at http://localhost:8000
 
