@@ -15,17 +15,18 @@ func main() {
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
 	}))
+	//app.Use(cors.New())
 	if err := initConfig(); err != nil {
 		log.Fatalf("error initializing configs: %s", err.Error())
 	}
 
 	database.Connect(database.Config{
-		Host:     "db",            //viper.GetString("db.host"),
-		Port:     "5432",          //viper.GetString("db.port"),
-		Username: "postgres",      //viper.GetString("db.username"),
-		DBName:   "assignment3go", //viper.GetString("db.dbname"),
-		SSLMode:  "disable",       //viper.GetString("db.sslmode"),
-		Password: "12345",         //os.Getenv("DB_PASSWORD"),
+		Host:     "localhost", //localhost - for local, db for docker         //viper.GetString("db.host"),
+		Port:     "5432",
+		Username: "postgres",
+		DBName:   "assignment3go",
+		SSLMode:  "disable",
+		Password: "12345",
 	})
 
 	//AllowCredentials is important because
