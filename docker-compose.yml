@@ -7,42 +7,16 @@ services:
       - "8000:8000"
     depends_on:
       - db
-  #    environment:
-  #      PORT: 8000
-  #    container_name: golang_container
-  #    environment:
-  #
-  #    tty: true
-  #    build: .
-  #    ports:
-  #      - 8000:8080
-  #    restart: on-failure
-  #    volumes:
-  #      - .:/app
-  #    depends_on:
-  #      - postgresdb
-  #    networks:
-  #      - learning
-
   db:
     restart: always
     image: postgres:latest
     volumes:
       - ./.database/postgres/data:/var/lib/postgresql/data
-    #    container_name: postgres_container
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=12345
       - POSTGRES_DB=assignment3go
     ports:
       - "5436:5432"
-#
-#    networks:
-#      - learning
-
-# Networks to be created to facilitate communication between containers
-#networks:
-#  learning:
-#    driver: bridge
 volumes:
   db:
